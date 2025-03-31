@@ -39,7 +39,7 @@ L'outil est structuré de manière modulaire pour faciliter l'extension et la ma
 
 - Python 3.8+
 - Privilèges administratifs (pour la capture mémoire et certaines opérations système)
-- Dépendances Python listées dans `requirements.txt`
+- Dépendances Python listées dans `requirements.txt` ou `requirements-minimal.txt`
 - Outils spécifiques selon les besoins (installés automatiquement sur certaines plateformes):
   - **Windows**: WinPmem
   - **Linux**: LiME (Linux Memory Extractor), AVML
@@ -56,15 +56,23 @@ cd autoforensic-collector
 
 ### 2. Installer les dépendances Python
 
+#### Installation complète (nécessite des outils de compilation)
+
 ```bash
 pip install -r requirements.txt
 ```
 
-Si vous rencontrez des problèmes avec certaines dépendances, vous pouvez installer uniquement les composants essentiels:
+Si vous rencontrez des erreurs de compilation sur Windows:
+- Installlez "Microsoft C++ Build Tools" depuis https://visualstudio.microsoft.com/visual-cpp-build-tools/
+- Sélectionnez "Outils de génération C++" pendant l'installation
+
+#### Installation minimale (recommandée pour commencer rapidement)
 
 ```bash
-pip install python-dateutil pytz psutil jinja2 cryptography markdown
+pip install -r requirements-minimal.txt
 ```
+
+Cette installation contient toutes les dépendances essentielles sans les modules qui nécessitent une compilation.
 
 ### 3. Installation des outils additionnels (facultatif)
 
@@ -146,6 +154,34 @@ sudo python autoforensic.py --processes --network --output process_network_evide
 - `--compress`: Compresse les résultats avec chiffrement
 - `--verify`: Vérifie l'intégrité des preuves collectées après la collecte
 - `--report FORMAT`: Génère un rapport au format spécifié (html, pdf, json)
+
+## Résolution des problèmes
+
+### Erreurs d'installation sur Windows
+
+Si vous rencontrez des erreurs de compilation sur Windows pour les paquets comme `pytsk3` ou `libscca-python`:
+
+1. Utilisez plutôt `requirements-minimal.txt` qui contient seulement les dépendances essentielles:
+   ```
+   pip install -r requirements-minimal.txt
+   ```
+
+2. Si vous avez besoin des fonctionnalités avancées, installez les outils de compilation:
+   - Téléchargez Microsoft Visual C++ Build Tools: https://visualstudio.microsoft.com/visual-cpp-build-tools/
+   - Pendant l'installation, sélectionnez "Outils de génération C++"
+   - Réinstallez les dépendances complètes: `pip install -r requirements.txt`
+
+### Erreurs d'exécution
+
+Si l'outil démarre mais échoue pendant l'exécution:
+
+1. Vérifiez que vous avez les privilèges administrateur
+2. Utilisez l'option `--verbose` ou `-vvv` pour obtenir plus d'informations de diagnostic:
+   ```
+   python autoforensic.py --memory --verbose
+   ```
+
+3. Consultez les fichiers journaux dans le répertoire de sortie, sous-dossier `logs/`
 
 ## Fonctionnement détaillé des modules
 
