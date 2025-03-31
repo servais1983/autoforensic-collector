@@ -1,0 +1,37 @@
+# Dépendances principales
+python-dateutil>=2.8.2
+pytz>=2021.3
+psutil>=5.9.0
+requests>=2.27.1
+voluptuous>=0.13.0
+tqdm>=4.64.0
+py-cpuinfo>=8.0.0
+tabulate>=0.8.9
+pretty-yaml>=0.1
+pyyaml>=6.0
+jinja2>=3.1.1
+
+# Traitement des formats
+pypdf2>=2.11.1
+Pillow>=9.1.0
+
+# Collecte mémoire
+volatility3>=2.0.1
+
+# Réseau
+scapy>=2.4.5
+pyshark>=0.4.5
+
+# Analyse de système de fichiers
+pytsk3>=20211111
+usnparser>=4.1.1
+prefetch-parser>=0.1.2
+regipyparser>=1.12.0
+
+# Rapport
+xhtml2pdf>=0.2.7
+markdown>=3.3.6
+
+# Sécurité
+cryptography>=36.0.2
+pyopenssl>=22.0.0
